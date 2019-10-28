@@ -1,10 +1,11 @@
 class PropertiesController < ApplicationController
+  before_action :set_property, only: [:show, :edit, :update]
+  
   def index
     @properties = Property.all
   end
 
   def show
-    @property = Property.find(params[:id])
   end
 
   def create
@@ -22,6 +23,14 @@ class PropertiesController < ApplicationController
 
   def edit
   end
+  
+  def update
+    if @property.update(property_params)
+      redirect_to properties_path
+    else
+      render :edit
+    end
+  end
 
   private
 
@@ -31,5 +40,9 @@ class PropertiesController < ApplicationController
                                      :price, 
                                      :age_building, 
                                      :note)
+  end
+
+  def set_property
+    @property = Property.find(params[:id])
   end
 end
