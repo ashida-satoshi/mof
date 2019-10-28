@@ -1,4 +1,5 @@
 class Property < ApplicationRecord
+    has_many :stations
     validates :name, presence: true, length: {minimum: 1}
     validates :price, presence: true, length: {minimum: 1}
     validates :address, presence: true, length: {minimum: 1}
