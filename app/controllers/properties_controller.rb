@@ -8,9 +8,12 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    property = Property.new(property_params)
-    property.save!
-    redirect_to properties_path, notice: "物件#{property.name}を登録しました。"
+    @property = Property.new(property_params)
+    if @property.save
+      redirect_to properties_path
+    else
+      render :new
+    end
   end
 
   def new
