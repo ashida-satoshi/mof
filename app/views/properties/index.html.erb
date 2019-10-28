@@ -1,10 +1,22 @@
-<h1>物件一覧</h1>
-<li>
-<p>物件名</p>
-<p>賃料</p>
-<p>住所</p>
-<p>築年数</p>
-<p>備考</p>
-</li>
-
-link_to '物件を登録する', new_properties_path
+<div class = "container" >
+  <h1>物件一覧</h1>
+    <ul id = "properties_list">
+      <li>
+        <p>物件名</p>
+        <p>賃料</p>
+        <p>住所</p>
+        <p>築年数</p>
+        <p>備考</p>
+      </li>
+      <% @properties.each do |property| %>
+        <li>
+          <p class="property_name"><%= property.name %></p>
+          <p class="property_price"><%= property.price%></p>
+          <p class="property_address"><%= property.address %></p>
+          <p class="property_age_building"><%= property.age_building %></p>
+          <p class="property_note"><%= propety.note %></p>
+        </li>
+      <% end %>
+    </ul>
+  <%= link_to '物件を登録する', new_property_path %>
+</div>
