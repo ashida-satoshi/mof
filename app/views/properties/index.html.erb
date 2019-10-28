@@ -1,22 +1,23 @@
 <div class = "container" >
   <h1>物件一覧</h1>
-    <ul id = "properties_list">
-      <li>
-        <p>物件名</p>
-        <p>賃料</p>
-        <p>住所</p>
-        <p>築年数</p>
-        <p>備考</p>
-      </li>
+    <table>
+      <tr>
+        <th>物件名</th>
+        <th>賃料</th>
+        <th>住所</th>
+        <th>築年数</th>
+        <th>備考</th>
+      </tr>
       <% @properties.each do |property| %>
-        <li>
-          <p class="property_name"><%= property.name %></p>
-          <p class="property_price"><%= property.price%></p>
-          <p class="property_address"><%= property.address %></p>
-          <p class="property_age_building"><%= property.age_building %></p>
-          <p class="property_note"><%= propety.note %></p>
-        </li>
+        <tr>
+          <td class="property_name"><%= property.name %></td>
+          <td class="property_price"><%= property.price%></td>
+          <td class="property_address"><%= property.address %></td>
+          <td class="property_age_building"><%= property.age_building %></td>
+          <td class="property_note"><%= property.note %></td>
+          <td><%=link_to '詳細',property_path(property.id) %></td>
+        </tr>
       <% end %>
-    </ul>
+    </table>
   <%= link_to '物件を登録する', new_property_path %>
 </div>
