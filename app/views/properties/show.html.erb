@@ -1,8 +1,19 @@
 <h1>閲覧</h1>
-<p>:物件名 <%= @property.name %></p>
-<p>:賃料 <%= @property.price %></p>
-<p>:住所 <%= @property.address %></p>
-<p>:築年数 <%= @property.age_building %></p>
-<p>:備考 <%= @property.note %></p>
+<p>物件名 <%= @property.name %></p>
+<p>賃料 <%= @property.price %></p>
+<p>住所 <%= @property.address %></p>
+<p>築年数 <%= @property.age_building %></p>
+<p>備考 <%= @property.note %></p>
 
-<%= link_to "一覧画面に戻る", properties_path %>
+<hr>
+
+<% @property.stations.each_with_index do |station, index| %>
+<h2>最寄り駅<%= index +1 %></h2>
+<p>路線名 <%= station.route_name %></p>
+<p>駅名 <%= station.station_name %></p>
+<p>徒歩分数<%= station.walking_time %></p>
+
+<% end %>
+
+<%= link_to "編集", edit_property_path(@property) %>
+<%= link_to "戻る", properties_path %>

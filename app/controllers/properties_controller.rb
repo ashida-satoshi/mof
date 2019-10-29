@@ -5,6 +5,11 @@ class PropertiesController < ApplicationController
     @properties = Property.all
   end
 
+  def new
+    @property = Property.new
+    2.times {@property.stations.build}
+  end
+
   def show
   end
 
@@ -17,9 +22,6 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def new
-    @property = Property.new
-  end
 
   def edit
   end
@@ -40,11 +42,13 @@ class PropertiesController < ApplicationController
   private
 
   def property_params
-    params.require(:property).permit(:name, 
-                                     :address, 
-                                     :price, 
-                                     :age_building, 
-                                     :note)
+    params.require(:property).permit(
+      :name, 
+      :address, 
+      :price, 
+      :age_building, 
+      :note,
+      stations_attributes: [ :id, :route_name, :station_name, :walking_time ])
   end
 
   def set_property
